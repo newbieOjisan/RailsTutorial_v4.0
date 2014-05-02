@@ -1,0 +1,13 @@
+<% @user ||= current_user %>
+<%= (request.path_info == user_path(@user)) ? (gravatar_for @user) : (link_to (gravatar_for @user,size:52),@user) %>
+<h1>
+  <%= @user.name %>
+</h1>
+<% unless request.path_info == user_path(@user)%>
+<span>
+  <%= link_to "view my profile", @user %>
+</span>
+<span>
+  <%= pluralize(@user.microposts.count, "micropost") %>
+</span>
+<% end %>
